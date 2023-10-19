@@ -11,7 +11,11 @@ export const getBasket = createAsyncThunk("basket/getBasket", async () => {
 export const { actions, reducer } = createSlice({
     name: "basket",
     initialState,
-    reducers: {},
+    reducers: {
+        addToBasket: (state, action) => {
+            state.basket = [...state.basket, action.payload];
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(getBasket.fulfilled, (state, action) => {
             state.basket = action.payload;
